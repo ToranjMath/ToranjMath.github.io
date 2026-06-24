@@ -1,73 +1,879 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Academic portfolio of Mohammad Toranjsimin, biostatistician and statistical programmer specializing in causal inference, longitudinal data analysis, machine learning, and health research."
+  />
+  <meta name="author" content="Mohammad Toranjsimin" />
   <title>Mohammad Toranjsimin | Biostatistician</title>
 
   <style>
+    :root {
+      --navy: #0f2d4a;
+      --blue: #176b9c;
+      --light-blue: #eaf4fb;
+      --teal: #1b7f79;
+      --text: #1f2933;
+      --muted: #5b6773;
+      --border: #d8e1e8;
+      --surface: #ffffff;
+      --background: #f6f9fb;
+      --shadow: 0 12px 30px rgba(15, 45, 74, 0.10);
+      --radius: 18px;
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      max-width: 850px;
-      margin: 60px auto;
-      padding: 20px;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    h1 {
-      color: #174a7e;
-    }
-
-    h2 {
-      margin-top: 35px;
-      color: #174a7e;
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--background);
+      line-height: 1.65;
     }
 
     a {
-      color: #0969da;
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      font-size: 1.05rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 650;
+    }
+
+    .hero {
+      padding: 92px 0 72px;
+      background:
+        radial-gradient(circle at top right, rgba(27, 127, 121, 0.12), transparent 34%),
+        linear-gradient(135deg, #f8fbfd 0%, #edf6fb 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 54px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--teal);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-size: 0.82rem;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      color: var(--navy);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.06;
+      letter-spacing: -0.045em;
+    }
+
+    .hero-subtitle {
+      margin: 24px 0 0;
+      max-width: 780px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 20px;
+      border-radius: 999px;
+      font-weight: 750;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .button:hover,
+    .button:focus {
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--navy);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .button-secondary {
+      color: var(--navy);
+      border-color: var(--navy);
+      background: white;
+    }
+
+    .profile-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-placeholder {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      background: linear-gradient(145deg, var(--navy), var(--teal));
+      color: white;
+      font-size: 2.3rem;
+      font-weight: 800;
+    }
+
+    .profile-card h2 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: 1.35rem;
+    }
+
+    .profile-card p {
+      margin: 0 0 8px;
+      color: var(--muted);
+    }
+
+    .quick-links {
+      display: grid;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .quick-links a {
+      display: block;
+      padding: 11px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-weight: 700;
+      background: #fbfdfe;
+    }
+
+    main section {
+      padding: 78px 0;
+    }
+
+    .section-heading {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 10px;
+      color: var(--navy);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      letter-spacing: -0.03em;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 8px 22px rgba(15, 45, 74, 0.05);
+    }
+
+    .panel h3 {
+      margin-top: 0;
+      color: var(--navy);
+    }
+
+    .fact-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .fact-list li {
+      padding-bottom: 13px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .fact-list li:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: 0 8px 22px rgba(15, 45, 74, 0.05);
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      color: var(--navy);
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: var(--light-blue);
+      color: var(--navy);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: 0 8px 22px rgba(15, 45, 74, 0.05);
+    }
+
+    .project-card .label {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: var(--teal);
+      font-weight: 800;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .project-card h3 {
+      margin: 0 0 12px;
+      color: var(--navy);
+      font-size: 1.35rem;
+    }
+
+    .project-card p {
+      color: var(--muted);
+    }
+
+    .project-card a {
+      font-weight: 750;
+    }
+
+    .publication-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .publication {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--teal);
+      border-radius: 14px;
+      padding: 22px 24px;
+    }
+
+    .publication h3 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: 1.08rem;
+    }
+
+    .publication p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, var(--navy), #163f63);
+      color: white;
+      border-radius: 28px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-box h2 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .contact-box p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-links a {
+      color: white;
+      font-weight: 750;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 12px 16px;
+      border-radius: 12px;
+    }
+
+    footer {
+      padding: 34px 0 44px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .about-grid,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .project-grid,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        align-items: flex-start;
+        padding: 18px 0;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        display: block;
+      }
+
+      .nav-links {
+        margin-top: 12px;
+        justify-content: flex-start;
+      }
+
+      .hero {
+        padding-top: 58px;
+      }
+
+      .profile-card,
+      .panel,
+      .card,
+      .project-card,
+      .contact-box {
+        padding: 22px;
+      }
     }
   </style>
 </head>
 
 <body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top">Mohammad Toranjsimin</a>
 
-  <h1>Mohammad Toranjsimin</h1>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-  <h3>Biostatistician | Statistical Programmer | Data Scientist</h3>
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Biostatistics · Causal Inference · Machine Learning</p>
 
-  <p>
-    I am a biostatistician with a PhD in Applied Mathematics and an MSc
-    in Biostatistics. My expertise includes causal inference, longitudinal
-    data analysis, machine learning, physical activity research, and
-    statistical programming in R and SAS.
-  </p>
+          <h1>Turning health data into clear and meaningful evidence.</h1>
 
-  <h2>Research Interests</h2>
+          <p class="hero-subtitle">
+            I am Mohammad Toranjsimin, a biostatistician and statistical programmer
+            with a PhD in Applied Mathematics and graduate training in Biostatistics.
+            My work focuses on causal inference, longitudinal data analysis, machine
+            learning, physical activity research, and reproducible statistical
+            programming in R and SAS.
+          </p>
 
-  <ul>
-    <li>Biostatistics and health-data analytics</li>
-    <li>Causal inference and propensity-score methods</li>
-    <li>Longitudinal and mixed-effects models</li>
-    <li>Machine learning in health research</li>
-    <li>Accelerometer and physical-activity data</li>
-  </ul>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#research">View my research</a>
+            <a class="button button-secondary" href="cv.pdf">Download CV</a>
+          </div>
+        </div>
 
-  <h2>Technical Skills</h2>
+        <aside class="profile-card">
+          <div class="profile-placeholder" aria-label="Initials MT">MT</div>
 
-  <p>
-    R, SAS, Python, SQL, machine learning, statistical modelling,
-    data visualization, reproducible research, and GitHub.
-  </p>
+          <h2>Mohammad Toranjsimin</h2>
+          <p>Biostatistician · Statistical Programmer · Data Scientist</p>
+          <p>Canada</p>
 
-  <h2>Contact</h2>
+          <div class="quick-links">
+            <a href="https://github.com/toranjmath" target="_blank" rel="noopener">
+              GitHub profile
+            </a>
+            <a href="https://www.linkedin.com/in/mohammad-toranjsimin-b613137b/" target="_blank" rel="noopener">
+              LinkedIn profile
+            </a>
+            <a href="mailto:simin1.math@gmail.com">Email me</a>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-  <p>
-    <a href="https://www.linkedin.com/in/mohammad-toranjsimin-b613137b/">LinkedIn</a> |
-    <a href="https://github.com/ToranjMath">GitHub</a> |
-    <a href="mailto:simin1.math@gmail.com">Email</a>
-  </p>
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <h2>About me</h2>
+          <p>
+            I combine strong mathematical foundations with applied experience in
+            biostatistics, health research, machine learning, and statistical computing.
+          </p>
+        </div>
 
+        <div class="about-grid">
+          <article class="panel">
+            <h3>Professional profile</h3>
+            <p>
+              My academic background spans Applied Mathematics and Biostatistics,
+              allowing me to approach complex research questions with both theoretical
+              depth and practical statistical judgment.
+            </p>
+            <p>
+              I am particularly interested in using advanced statistical and machine
+              learning methods to address real-world problems in public health,
+              clinical research, epidemiology, and healthcare analytics.
+            </p>
+          </article>
+
+          <aside class="panel">
+            <h3>Education</h3>
+            <ul class="fact-list">
+              <li>
+                <strong>MSc in Biostatistics</strong><br />
+                University of Saskatchewan
+              </li>
+              <li>
+                <strong>PhD in Applied Mathematics</strong>
+              </li>
+              <li>
+                <strong>Graduate training in statistical learning, inference,
+                  epidemiology, and computational statistics</strong>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="expertise">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Areas of expertise</h2>
+          <p>
+            Statistical methods, programming tools, and research domains that define
+            my current work.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <h3>Biostatistics</h3>
+            <p>
+              Study design, regression modelling, statistical inference, model
+              diagnostics, and interpretation of health data.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Regression</span>
+              <span class="tag">Inference</span>
+              <span class="tag">Study design</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Causal inference</h3>
+            <p>
+              Propensity score methods, matching, covariate balance assessment,
+              treatment-effect estimation, and double machine learning.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Propensity scores</span>
+              <span class="tag">DML</span>
+              <span class="tag">ATE estimation</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Longitudinal data analysis</h3>
+            <p>
+              Linear mixed-effects models, repeated measurements, patient-level
+              variability, and longitudinal treatment effects.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Mixed models</span>
+              <span class="tag">Repeated measures</span>
+              <span class="tag">Health outcomes</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Machine learning</h3>
+            <p>
+              Random Forest, Support Vector Machine, Neural Networks, resampling,
+              hyperparameter tuning, and model validation.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Random Forest</span>
+              <span class="tag">SVM</span>
+              <span class="tag">Neural Networks</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Statistical programming</h3>
+            <p>
+              Reproducible analysis pipelines, data management, visualization,
+              quality control, and reporting in R and SAS.
+            </p>
+            <div class="tag-list">
+              <span class="tag">R</span>
+              <span class="tag">SAS</span>
+              <span class="tag">Python</span>
+              <span class="tag">SQL</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Physical activity research</h3>
+            <p>
+              Accelerometer data processing, activity counts, intensity
+              classification, MET-based cut-points, and wearable-sensor analytics.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Accelerometers</span>
+              <span class="tag">Activity counts</span>
+              <span class="tag">Wearable data</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Selected research</h2>
+          <p>
+            Current and recent projects in causal inference, lung health, physical
+            activity, and machine learning.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <span class="label">Graduate research</span>
+            <h3>Machine learning for causal inference in lung health</h3>
+            <p>
+              Evaluated intervention effects on longitudinal lung-function decline
+              using propensity score methods, mixed-effects models, and double machine
+              learning. The work compared statistical adjustment, matched analyses,
+              and machine-learning-based treatment-effect estimation.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Causal inference</span>
+              <span class="tag">DoubleML</span>
+              <span class="tag">Longitudinal data</span>
+              <span class="tag">COPD</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <span class="label">Research manuscript</span>
+            <h3>Physical activity intensity classification</h3>
+            <p>
+              Compared traditional activity cut-points, regression-based data-driven
+              cut-points, and machine learning models for classifying physical
+              activity intensity from accelerometer-derived measures.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Accelerometer data</span>
+              <span class="tag">Random Forest</span>
+              <span class="tag">SVM</span>
+              <span class="tag">LOPO validation</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <span class="label">Methods</span>
+            <h3>Propensity score analysis with machine learning</h3>
+            <p>
+              Investigated logistic regression, Random Forest, XGBoost, and generalized
+              additive models for propensity score estimation, matching, and covariate
+              balance in observational health studies.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Matching</span>
+              <span class="tag">XGBoost</span>
+              <span class="tag">Balance diagnostics</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <span class="label">Reproducible analytics</span>
+            <h3>Statistical workflows in R and SAS</h3>
+            <p>
+              Developed reproducible pipelines for data cleaning, imputation,
+              modelling, resampling, performance evaluation, visualization, and
+              research reporting.
+            </p>
+            <div class="tag-list">
+              <span class="tag">R</span>
+              <span class="tag">SAS</span>
+              <span class="tag">Reproducibility</span>
+              <span class="tag">Quality control</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Publications and presentations</h2>
+          <p>
+            Replace the examples below with your final article titles, journal details,
+            conference abstracts, DOI links, and presentation materials.
+          </p>
+        </div>
+
+        <div class="publication-list">
+          <article class="publication">
+            <h3>
+              Physical activity intensity classification using accelerometer-derived
+              measures and machine learning
+            </h3>
+            <p>Manuscript in preparation or under review. Add author list, journal, and year.</p>
+          </article>
+
+          <article class="publication">
+            <h3>
+              Propensity score analysis using machine learning for causal inference
+              in lung-function decline
+            </h3>
+            <p>
+              Presented at the Statistical Society of Canada Annual Meeting. Add the
+              year, co-authors, and poster or abstract link.
+            </p>
+          </article>
+
+          <article class="publication">
+            <h3>Conference presentations and research posters</h3>
+            <p>
+              Add your SSC, CSEB, School of Public Health Poster Day, and other
+              academic presentations here.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Technical skills</h2>
+          <p>
+            A concise overview of the tools and methods I use across research and
+            applied statistical projects.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          <article class="panel">
+            <h3>Programming and software</h3>
+            <div class="tag-list">
+              <span class="tag">R</span>
+              <span class="tag">SAS</span>
+              <span class="tag">Python</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Git</span>
+              <span class="tag">GitHub</span>
+              <span class="tag">LaTeX</span>
+              <span class="tag">Quarto</span>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h3>Statistical methods</h3>
+            <div class="tag-list">
+              <span class="tag">Linear models</span>
+              <span class="tag">Mixed-effects models</span>
+              <span class="tag">Missing-data methods</span>
+              <span class="tag">Bootstrap</span>
+              <span class="tag">Cross-validation</span>
+              <span class="tag">Causal inference</span>
+              <span class="tag">Machine learning</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <div>
+            <h2>Let’s connect</h2>
+            <p>
+              I am interested in opportunities and collaborations in biostatistics,
+              statistical programming, healthcare analytics, pharmaceutical research,
+              epidemiology, and data science.
+            </p>
+          </div>
+
+          <div class="contact-links">
+            <a href="mailto:YOUR-EMAIL@example.com">YOUR-EMAIL@example.com</a>
+            <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME/" target="_blank" rel="noopener">
+              LinkedIn
+            </a>
+            <a href="https://github.com/toranjmath" target="_blank" rel="noopener">
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Mohammad Toranjsimin. Built with HTML and CSS and hosted on GitHub Pages.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
